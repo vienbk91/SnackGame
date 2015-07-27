@@ -55,7 +55,7 @@ bool PlayScene::init()
 	//===========================================================================
 	// Create PlaySceneer
 
-	player = Sprite::create("PlaySceneer.png");
+	player = Sprite::create("player.png");
 	player->setTag(objectTag::Player_Tag);
 	player->setPosition(_visibleSize.width / 2, _visibleSize.height * 0.23);
 	this->addChild(player, 0);
@@ -68,8 +68,8 @@ bool PlayScene::init()
 
 	Vector<SpriteFrame*> frames;
 	Size PlayerSize = player->getContentSize();
-	frames.pushBack(SpriteFrame::create("PlaySceneer.png", Rect(0, 0, PlayerSize.width, PlayerSize.height)));
-	frames.pushBack(SpriteFrame::create("PlaySceneer2.png", Rect(0, 0, PlayerSize.width, PlayerSize.height)));
+	frames.pushBack(SpriteFrame::create("player.png", Rect(0, 0, PlayerSize.width, PlayerSize.height)));
+	frames.pushBack(SpriteFrame::create("player2.png", Rect(0, 0, PlayerSize.width, PlayerSize.height)));
 
 	auto animation = Animation::createWithSpriteFrames(frames , 0.2f);
 
@@ -130,12 +130,29 @@ bool PlayScene::onTouchBegan(Touch* touch, Event* event)
 }
 void PlayScene::onTouchMoved(Touch* touch, Event* event)
 {
+	Vec2 touchLocation = touch->getLocation();
 
+	if (player->getBoundingBox().containsPoint(touchLocation))
+	{
+		updatePlayerPosition(touchLocation.x);
+	}
 }
 
 void PlayScene::onTouchEnded(Touch* touch, Event* event)
 {
 
+}
+
+
+// Ham update vi tri cua player dong thoi khong thuc hien viec di chuyen neu player thoat ra khoi man hinh
+void PlayScene::updatePlayerPosition(float newPosition)
+{
+	float spirteHalfWidth = player->getBoundingBox().size.width / 2;
+	// Neu nam trong man hinh thi duoc di chuyen
+	if (newPosition > spirteHalfWidth && newPosition < _visibleSize.width - spirteHalfWidth)
+	{
+		player->setPositionX(newPosition);
+	}
 }
 
 

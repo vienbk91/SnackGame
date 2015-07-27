@@ -34,6 +34,8 @@ private :
 	void onTouchMoved(Touch* touch, Event* event);
 	void onTouchEnded(Touch* touch, Event* event);
 
+	void updatePlayerPosition(float newPosition);
+
 };
 
 #endif // __HELLOWORLD_SCENE_H__
