@@ -34,7 +34,7 @@ bool AppDelegate::applicationDidFinishLaunching() {
 	// Thiet lap ti le man hinh test tren win32
 	if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
 	{
-		glview->setFrameSize(640, 960);
+		glview->setFrameSize(480, 800);
 	}
 
 
@@ -43,6 +43,10 @@ bool AppDelegate::applicationDidFinishLaunching() {
 	Size designSize = CCSizeMake(768, 1280);
 
 	std::vector<std::string> searchPaths;
+
+	searchPaths.push_back("sounds"); // Add sounds
+	searchPaths.push_back("particles"); // Add effect particle
+
 
 	if (screenSize.height > 800){
 		searchPaths.push_back("images/high");

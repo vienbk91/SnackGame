@@ -6,7 +6,8 @@
 enum objectTag
 {
 	Bomb_Tag = 1,
-	Player_Tag = 2
+	Player_Tag = 2 , 
+	Line_Tag = 3
 };
 
 

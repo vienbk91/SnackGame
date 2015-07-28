@@ -2,9 +2,11 @@
 #define _PLAY_SCENE_H__
 
 #include "cocos2d.h"
+#include "AudioEngine.h"
 
 
 #include "PauseScene.h"
+#include "GameOverScene.h"
 #include "Define.h"
 
 class PlayScene : public cocos2d::Layer
@@ -26,6 +28,8 @@ private :
 	Sprite* bomb;
 	Sprite* player;
 
+	Vector<Sprite*> _bombs;
+
 	void setPhysicsBodyForSprite(Sprite* sprite);
 
 	bool onContactBegin(PhysicsContact& contact);
@@ -35,6 +39,9 @@ private :
 	void onTouchEnded(Touch* touch, Event* event);
 
 	void updatePlayerPosition(float newPosition);
+
+	void addBombs(float dt);
+
 
 };
 
